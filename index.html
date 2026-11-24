@@ -1,88 +1,435 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pramod | Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pramod Thethuvar — Backend Architect and AI Explorer building scalable, modular systems.">
+  <title>Pramod Thethuvar | Backend Architect & AI Explorer</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root {
+      --bg: #0b1120;
+      --surface: #111827;
+      --surface-2: #172033;
+      --text: #f8fafc;
+      --muted: #9ca3b5;
+      --accent: #38bdf8;
+      --accent-2: #818cf8;
+      --border: #263247;
     }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: #0f172a;
-      color: #f8fafc;
-      height: 100vh;
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.09), transparent 28rem),
+        radial-gradient(circle at 85% 70%, rgba(129, 140, 248, 0.08), transparent 28rem),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    .nav {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+      height: 72px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 1.5rem;
+      justify-content: space-between;
     }
 
-    .box {
-      max-width: 500px;
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-decoration: none;
     }
 
-    .badge {
-      display: inline-block;
-      background: rgba(56, 189, 248, 0.15);
-      color: #38bdf8;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+    .brand span { color: var(--accent); }
+
+    .nav-links { display: flex; gap: 1.5rem; }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: color 180ms ease;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .container {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 5rem 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: 1.25rem;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      padding: 0.4rem 0.9rem;
-      border-radius: 999px;
-      margin-bottom: 1.5rem;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
     }
 
     h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(3rem, 8vw, 6.2rem);
+      line-height: 0.96;
+      letter-spacing: -0.065em;
     }
 
-    p {
-      color: #94a3b8;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 2rem;
+    h1 span {
+      display: block;
+      color: transparent;
+      background: linear-gradient(100deg, var(--accent), var(--accent-2));
+      background-clip: text;
+      -webkit-background-clip: text;
     }
 
-    .links a {
-      color: #f8fafc;
+    .intro {
+      max-width: 650px;
+      margin: 1.6rem 0 2rem;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0.7rem 1.15rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
       text-decoration: none;
-      border: 1px solid #334155;
-      padding: 0.6rem 1.2rem;
-      border-radius: 6px;
-      font-size: 0.95rem;
-      margin: 0 0.4rem;
-      display: inline-block;
-      transition: background 0.2s, border-color 0.2s;
+      font-weight: 700;
+      font-size: 0.92rem;
+      transition: 180ms ease;
     }
 
-    .links a:hover {
-      background: #1e293b;
-      border-color: #64748b;
+    .button.primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #08111f;
+    }
+
+    .button:hover { transform: translateY(-2px); border-color: var(--accent); }
+
+    .profile-card {
+      position: relative;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(17, 24, 39, 0.82);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+    }
+
+    .profile-card::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      z-index: -1;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.35), transparent 45%, rgba(129, 140, 248, 0.25));
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .status i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 16px #34d399;
+    }
+
+    .profile-card strong {
+      display: block;
+      margin: 1.5rem 0 0.45rem;
+      font-size: 1.3rem;
+    }
+
+    .profile-card p { margin: 0; color: var(--muted); }
+
+    section { padding: 6rem 0; }
+
+    .section-heading { margin-bottom: 2.2rem; }
+
+    .section-heading p {
+      margin: 0 0 0.35rem;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: -0.045em;
+    }
+
+    .about-grid,
+    .project-grid,
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(17, 24, 39, 0.72);
+    }
+
+    .card h3 { margin: 0 0 0.65rem; }
+    .card p { margin: 0; color: var(--muted); }
+
+    .card-number {
+      display: block;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.78rem;
+    }
+
+    .skills-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .skill-list { list-style: none; margin: 0; padding: 0; }
+
+    .skill-list li {
+      padding: 0.45rem 0;
+      border-bottom: 1px solid rgba(38, 50, 71, 0.65);
+      color: var(--muted);
+    }
+
+    .skill-list li:last-child { border-bottom: 0; }
+
+    .contact {
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .contact h2 {
+      max-width: 700px;
+      margin: 0 auto 1.25rem;
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    .contact p { margin: 0 0 2rem; color: var(--muted); }
+
+    footer {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 1.5rem 0 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    @media (max-width: 850px) {
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; gap: 2.5rem; min-height: auto; }
+      .profile-card { max-width: 420px; }
+      .about-grid, .project-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 520px) {
+      section { padding: 4rem 0; }
+      .skills-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.5rem; }
     }
   </style>
 </head>
 <body>
-  <div class="box">
-    <span class="badge">Under Construction</span>
-    <h1>Portfolio Coming Soon</h1>
-    <p>
-      I'm currently putting together my projects and work samples. Check back soon, or reach out directly below.
-    </p>
-    <div class="links">
-      <a href="https://github.com" target="_blank">GitHub</a>
-      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+  <header class="nav">
+    <a class="brand" href="#top">Pramod<span>.</span></a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top" class="container">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Backend Architect & AI Explorer</div>
+        <h1>Pramod <span>Thethuvar</span></h1>
+        <p class="intro">
+          Pragmatic programmer focused on a design-first approach to building resilient,
+          scalable systems with extensibility and reusability at their core.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="#projects">View my work</a>
+          <a class="button" href="https://github.com/pramodkuth" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="button" href="https://in.linkedin.com/in/pramodkuth" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+
+      <aside class="profile-card" aria-label="Profile status">
+        <div class="status"><i></i> Open to collaboration</div>
+        <strong>Building systems that adapt.</strong>
+        <p>Modular. Configurable. Maintainable.</p>
+      </aside>
     </div>
-  </div>
+
+    <section id="about">
+      <div class="section-heading">
+        <p>01 / Philosophy</p>
+        <h2>Architecture before implementation.</h2>
+      </div>
+      <div class="about-grid">
+        <article class="card">
+          <h3>Design-first</h3>
+          <p>I prioritize API contracts and system architecture before writing a single line of code.</p>
+        </article>
+        <article class="card">
+          <h3>Plug-and-play</h3>
+          <p>Every project is shaped as reusable, modular components for maximum agility.</p>
+        </article>
+        <article class="card">
+          <h3>Highly configurable</h3>
+          <p>I advocate externalized configuration so systems can adapt without recompilation.</p>
+        </article>
+        <article class="card">
+          <h3>SOLID & pragmatic</h3>
+          <p>I apply SOLID principles to support long-term health and maintainability.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-heading">
+        <p>02 / Current work</p>
+        <h2>Selected lab projects.</h2>
+      </div>
+      <div class="project-grid">
+        <article class="card">
+          <span class="card-number">PROJECT / 01</span>
+          <h3>Machine Learning System Design</h3>
+          <p>Completed “Designing Machine Learning Systems” by Chip Huyen, exploring production ML architecture and system tradeoffs.</p>
+        </article>
+        <article class="card">
+          <span class="card-number">PROJECT / 02</span>
+          <h3>AI Advisor with OPA</h3>
+          <p>Built an intelligent advisor using Open Policy Agent to enable fine-grained, plug-and-play governance and regulations.</p>
+        </article>
+        <article class="card">
+          <span class="card-number">PROJECT / 03</span>
+          <h3>Blockchain Essentials</h3>
+          <p>Completed IBM Blockchain Essentials training, with a focus on blockchain principles and practical business applications.</p>
+        </article>
+        <article class="card">
+          <span class="card-number">PROJECT / 04</span>
+          <h3>React Experiments</h3>
+          <p>Building modular, configurable UI components to complement robust Spring Boot backends.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-heading">
+        <p>03 / Toolkit</p>
+        <h2>Core technologies.</h2>
+      </div>
+      <div class="skills-grid">
+        <article class="card">
+          <h3>Backend</h3>
+          <ul class="skill-list">
+            <li>Spring Boot</li>
+            <li>Java</li>
+            <li>Microservices</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Frontend</h3>
+          <ul class="skill-list">
+            <li>React</li>
+            <li>Modular components</li>
+            <li>Configurable UI</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>AI / ML</h3>
+          <ul class="skill-list">
+            <li>Spring AI</li>
+            <li>LangChain4j</li>
+            <li>System design</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Core focus</h3>
+          <ul class="skill-list">
+            <li>API design</li>
+            <li>Scalability</li>
+            <li>Maintainability</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="eyebrow">Let’s connect</div>
+      <h2>Have a system worth building?</h2>
+      <p>Let’s discuss architecture, AI, backend systems, or a new collaboration.</p>
+      <div class="actions" style="justify-content: center">
+        <a class="button primary" href="mailto:pramodkuth@gmail.com">Send an email</a>
+        <a class="button" href="https://in.linkedin.com/in/pramodkuth" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© <span id="year"></span> Pramod Thethuvar</span>
+    <span>Built with HTML & CSS</span>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
