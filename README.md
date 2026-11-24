@@ -1,2 +1,2 @@
-# pramodkuth.gihub.io
+# pramodkuth.github.io
 Personal website and portfolio
